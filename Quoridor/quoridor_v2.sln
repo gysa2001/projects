@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "quoridor_v2", "quoridor_v2.csproj", "{DDDD5728-141E-4061-AABE-E5641AEC9070}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DDDD5728-141E-4061-AABE-E5641AEC9070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDDD5728-141E-4061-AABE-E5641AEC9070}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDDD5728-141E-4061-AABE-E5641AEC9070}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDDD5728-141E-4061-AABE-E5641AEC9070}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F962D667-EC18-4134-BF35-FB07DD71086C}
+	EndGlobalSection
+EndGlobal

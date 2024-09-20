@@ -1,0 +1,232 @@
+---
+ - hosts: pc1
+   become: true
+   become_method: su
+   vars:
+     backup_dir: "/var/server123_backups/"
+     ansible_backup_dir: "/home/gysa8227/server123_backups/"
+     mysql_user: "root"
+     mysql_password: "admin"
+     mysql_host: "localhost"
+     mysql_database: "wordpress"
+     admins:
+       - admin1
+       - admin2
+       
+     mysql_users:
+       - name: user1
+         password: password
+       - name: user2
+         password: 123123
+       - name: user3
+         password: 1234567
+       - name: user4
+         password: 1111111
+       - name: user5
+         password: admin
+       - name: user6
+         password: qwetry
+       - name: user7
+         password: qwetry123
+       - name: user8
+         password: abcdef
+       - name: user9
+         password: 12345
+       - name: user10
+         password: 123456789
+     
+   tasks:
+
+     - name: Create backup directory on the Ansible control machine
+       file: 
+         path: "{{ ansible_backup_dir }}" 
+         state: directory
+         owner: gysa8227
+         group: gysa8227
+         mode: 0777
+       delegate_to: localhost 
+               
+     - name: Create backup directory on the target server
+       file:
+         path: "{{ backup_dir }}"
+         state: directory
+         owner: admin1
+         group: adm
+         mode: 0755
+
+     - name: Backup Apache2 configuration
+       copy:
+         src: "/etc/apache2"
+         dest: "{{ backup_dir }}/apache_backup_{{ ansible_date_time.date }}"
+         remote_src: yes
+
+     - name: Backup MySQL configuration
+       copy:
+         src: "/etc/mysql"
+         dest: "{{ backup_dir }}/mysql_backup_{{ ansible_date_time.date }}"
+         remote_src: yes
+         
+     - name: Backup MySQL databases
+       shell: >
+        mysqldump --user={{ mysql_user }} --password={{ mysql_password }}
+        wordpress > "{{ backup_dir }}/mysql_databases.sql"
+
+     - name: Backup WordPress files
+       copy:
+         src: "/var/www/html/wordpress"
+         dest: "{{ backup_dir }}/wordpress_backup_{{ ansible_date_time.date }}"
+         remote_src: yes
+
+     - name: Backup Postfix configuration
+       copy:
+         src: "/etc/postfix"
+         dest: "{{ backup_dir }}/postfix_backup_{{ ansible_date_time.date }}"
+         remote_src: yes
+
+     - name: Backup Dovecot configuration
+       copy:
+         src: "/etc/dovecot"
+         dest: "{{ backup_dir }}/dovecot_backup_{{ ansible_date_time.date }}"
+         remote_src: yes
+ 
+     - name: Backup OpenDKIM configuration
+       copy:
+         src: "/etc/opendkim"
+         dest: "{{ backup_dir }}/opendkim_backup_{{ ansible_date_time.date }}"
+         remote_src: yes
+
+     - name: Change permissions and owner
+       file:
+         path: "{{ backup_dir }}"
+         owner: admin1
+         group: adm
+         mode: 0755
+         recurse: yes
+         
+     - name: Copy backups to the Ansible machine
+       synchronize:
+         src: "{{ backup_dir }}"
+         dest: "{{ ansible_backup_dir }}"
+         mode: pull
+         rsync_path: /usr/bin/rsync
+         
+     - name: Update and upgrade VM
+       apt:
+        update_cache: yes
+        upgrade: yes
+
+     - name: Update Apache2
+       apt:
+         name: apache2
+         state: latest      
+
+     - name: Stop mysql server
+       service:
+         name: mysql
+         state: stopped
+
+     - name: Unistall current version mysql server
+       apt:
+        name: 'mysql-server*'
+        state: absent
+        purge: true
+        autoremove: yes
+
+     - name: Install python3-mysqldb package
+       apt:
+        name: 'python3-mysqldb'
+
+     - name: Delete /var/lib/mysql directory
+       file:
+         path: "/var/lib/mysql"
+         state: absent
+    
+     - name: Install latest version mysql server
+       apt:
+        name: mysql-server
+        state: latest
+        update_cache: true
+
+     - name: Start mysql server
+       service:
+         name: mysql
+         state: started
+
+     - name: Set MySQL root password
+       mysql_user:
+         name: "{{ mysql_user }}"
+         password: "{{ mysql_password }}"
+         login_unix_socket: /var/run/mysqld/mysqld.sock
+         check_implicit_admin: yes
+         state: present
+
+     - name: Recreate MySQL users
+       mysql_user:
+         name: "{{ item.name }}"
+         password: "{{ item.password }}"
+         login_user: "{{ mysql_user }}"
+         login_password: "{{ mysql_password }}"
+         login_host: "{{ mysql_host }}"
+         state: present
+         priv: "{{ mysql_database }}.*:ALL"
+       loop: "{{ mysql_users }}"
+
+
+     - name: Restore MySQL databases
+       mysql_db:
+         login_user: "{{mysql_user}}"
+         login_password: "{{mysql_password}}"
+         state: import
+         target: "{{ backup_dir }}/mysql_databases.sql"
+         name: wordpress
+
+     - name: Update WordPress CMS
+       shell: wp core update
+       args:
+         chdir: /var/www/html/wordpress
+       become_user: admin1
+      
+     - name: Update Mail services (Postfix, Dovecot, OpenDKIM)
+       apt:
+         name: "{{ item }}"
+         state: latest
+       loop: [ 'postfix', 'dovecot-imapd', 'dovecot-pop3d', 'opendkim' ]
+        
+     - name: Update admin passwords
+       user:
+         name: "{{ item }}"
+         password: "{{ (item + 'pass') | password_hash('sha256') }}"
+         state: present
+       loop: "{{ admins }}" 
+     
+     - name: Get sudo group members
+       shell: "getent group sudo | cut -d: -f4 | tr ',' '\n'"
+       register: sudo_members_raw
+       changed_when: false
+
+     - name: Remove users from sudo group if not in admin group
+       user:
+         name: "{{ item }}"
+         groups: sudo
+         state: absent
+       loop: "{{ sudo_members_raw.stdout_lines }}"
+       when: item not in admins
+       
+     - name: Install logcheck
+       apt: 
+        name: "logcheck"
+        state: latest  
+
+     - name: Configure logcheck
+       template:
+         src: logcheck.conf.j2
+         dest: /etc/logcheck/logcheck.conf
+         owner: root
+         group: root
+         mode: '0644'
+       
+     - name: Run logcheck
+       shell: "sudo -u logcheck logcheck"    
+       
+     - name: Restrict user directory permissions
+       shell: "sudo find /home -mindepth 1 -type d -exec chmod 0760 {} +"     

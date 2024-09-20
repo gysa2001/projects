@@ -1,0 +1,30 @@
+---
+ - hosts: client
+   become: yes
+   tasks:
+
+   - name: Update Ubuntu
+     command: sudo apt-get update
+
+   - name: Install lxde-desktop, xrdp, firefox, snapd
+     apt: name={{item}} update_cache=yes state=latest
+     loop: [ 'lxde','xrdp','firefox','snapd']
+   
+   - name: Install skype
+     command: sudo snap install skype --classic
+
+   - name: Enable remote desktop with xrdp
+     systemd:
+       name: xrdp
+       enabled: yes
+
+   - name: Create a user for xdrp
+     user:
+      name: bobute
+      update_password: on_create
+      password: "{{ '123' | password_hash('sha512') }}"
+      group: sudo
+      state: present
+
+   - name: Reboot vm
+     reboot:

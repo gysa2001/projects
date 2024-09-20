@@ -1,0 +1,58 @@
+---
+ - hosts: dbserver
+   become: yes
+   tasks:
+   - include_vars: ~/some_vars.yml
+
+   - name: Update Ubuntu
+     command: apt-get update
+
+   - name: Install Mariadb server and other Packages
+     apt: name={{ item }} update_cache=yes state=latest
+     loop: [ 'mariadb-server', 'python3-pymysql', 'php-mysql']
+
+   - name: Change permissions
+     command: sudo chmod 766 /etc/mysql/mariadb.cnf
+
+   - name: Allow access to server from outside
+     command: sudo echo "bind-address=0.0.0.0" >> /etc/mysql/mariadb.cnf
+
+   - name: Restart Mariadb server
+     service:
+      name: mysql
+      state: restarted
+
+   - name: Set the root password
+     mysql_user:
+       name: root
+       password: "123"
+       login_unix_socket: /var/run/mysqld/mysqld.sock
+
+   - name: Create Mariadb user for website
+     mysql_user:
+       host: "{{webserver_ip}}"
+       name: "{{db_user_name}}"
+       password: "{{db_user_password}}"
+       priv: "{{db_name}}.*:ALL"
+       state: present
+       login_user: root
+       login_password: "123"
+
+
+   - name: Creates database for website
+     mysql_db:
+       name: "{{db_name}}"
+       state: present
+       login_user: "root"
+       login_password: "123"
+
+   - name: Creates table in database
+     mysql_query:
+       login_db: "{{db_name}}"
+       query: CREATE TABLE client_records(
+               id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+               client_ip_address VARCHAR(30) NOT NULL,
+               reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)
+       login_user: "root"
+       login_password: "123"
+

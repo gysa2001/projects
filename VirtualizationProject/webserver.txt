@@ -1,0 +1,75 @@
+---
+ - hosts: webserver
+   become: yes
+
+   tasks:
+   - include_vars: ~/some_vars.yml
+
+   - name: Update ubuntu
+     command: sudo apt-get update
+
+   - name: Install web server (apache) packages
+     apt: name={{ item }} update_cache=yes state=latest
+     loop: [ 'apache2', 'python3-pymysql', 'php', 'php-mysql', 'libapache2-mod-php' ]
+
+   - name: Delete default index.html
+     file:
+      path: /var/www/html/index.html
+      state: absent
+
+   - name: Change directory permissions
+     file:
+       path: /html
+       state: directory
+       group: www-data
+       recurse: yes
+       mode: g+rx
+
+   - name: Create directory for website files
+     file:
+      path: web_source
+      state: directory
+
+   - name: Get website files
+     unarchive:
+      src: https://github.com/arnasce/web_template/archive/refs/heads/main.zip
+      dest: web_source/
+      remote_src: yes
+
+   - name: Copy website files to /www
+     command: sudo cp -a web_source/web_template-main/. /var/www/html/
+
+   - name: Add database private IP address to db_connection.php
+     lineinfile:
+      path: /var/www/html/includes/db_connection.php
+      search_string: '$servername = '
+      line: '    $servername = "{{ dbserver_ip }}";'
+
+   - name: Add database user name to db_connection.php
+     lineinfile:
+      path: /var/www/html/includes/db_connection.php
+      search_string: '$username = '
+      line: '    $username = "{{ db_user_name }}";'
+
+   - name: Add database password to db_connection.php
+     lineinfile:
+      path: /var/www/html/includes/db_connection.php
+      search_string: '$password = '
+      line: '    $password = "{{ db_user_password }}";'
+
+   - name: Add database name to db_connection.php
+     lineinfile:
+      path: /var/www/html/includes/db_connection.php
+      search_string: '$dbname = '
+      line: '    $dbname = "{{ db_name }}";'
+
+   - name: Reload Apache
+     service:
+       name: apache2
+       state: reloaded
+
+   - name: Restart Apache
+     service:
+       name: apache2
+       state: restarted
+

@@ -1,0 +1,59 @@
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\AE.Net.Mail.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\BouncyCastle.Cryptography.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\Google.Apis.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\Google.Apis.Auth.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\Google.Apis.Core.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\Google.Apis.Gmail.v1.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\Google.Protobuf.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\K4os.Compression.LZ4.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\K4os.Compression.LZ4.Streams.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\K4os.Hash.xxHash.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\Microsoft.Toolkit.Uwp.Notifications.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\MySql.Data.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\Newtonsoft.Json.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\ReaLTaiizor.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\System.CodeDom.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\System.IO.Pipelines.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\System.Management.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\System.Text.Encodings.Web.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\System.Text.Json.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\System.Windows.Extensions.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\ZstdSharp.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\runtimes\win-x64\native\comerr64.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\runtimes\win-x64\native\gssapi64.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\runtimes\win-x64\native\k5sprt64.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\runtimes\win-x64\native\krb5_64.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\runtimes\win-x64\native\krbcc64.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\runtimes\win\lib\net6.0\System.Management.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\Microsoft.Windows.SDK.NET.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\WinRT.Runtime.dll
+C:\Users\gytis\Documents\TaskManagementApp\obj\Debug\net6.0-windows10.0.17763.0\TaskManagementApp.csproj.AssemblyReference.cache
+C:\Users\gytis\Documents\TaskManagementApp\obj\Debug\net6.0-windows10.0.17763.0\TaskManagementApp.DashboardForm.resources
+C:\Users\gytis\Documents\TaskManagementApp\obj\Debug\net6.0-windows10.0.17763.0\TaskManagementApp.LoginForm.resources
+C:\Users\gytis\Documents\TaskManagementApp\obj\Debug\net6.0-windows10.0.17763.0\TaskManagementApp.Forms.NewCategoryForm.resources
+C:\Users\gytis\Documents\TaskManagementApp\obj\Debug\net6.0-windows10.0.17763.0\TaskManagementApp.RegistrationForm.resources
+C:\Users\gytis\Documents\TaskManagementApp\obj\Debug\net6.0-windows10.0.17763.0\TaskManagementApp.Forms.ResetPasswordForm.resources
+C:\Users\gytis\Documents\TaskManagementApp\obj\Debug\net6.0-windows10.0.17763.0\TaskManagementApp.Forms.TaskForm.resources
+C:\Users\gytis\Documents\TaskManagementApp\obj\Debug\net6.0-windows10.0.17763.0\TaskManagementApp.Properties.Resources.resources
+C:\Users\gytis\Documents\TaskManagementApp\obj\Debug\net6.0-windows10.0.17763.0\TaskManagementApp.csproj.GenerateResource.cache
+C:\Users\gytis\Documents\TaskManagementApp\obj\Debug\net6.0-windows10.0.17763.0\TaskManagementApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gytis\Documents\TaskManagementApp\obj\Debug\net6.0-windows10.0.17763.0\TaskManagementApp.AssemblyInfoInputs.cache
+C:\Users\gytis\Documents\TaskManagementApp\obj\Debug\net6.0-windows10.0.17763.0\TaskManagementApp.AssemblyInfo.cs
+C:\Users\gytis\Documents\TaskManagementApp\obj\Debug\net6.0-windows10.0.17763.0\TaskManagementApp.csproj.CoreCompileInputs.cache
+C:\Users\gytis\Documents\TaskManagementApp\obj\Debug\net6.0-windows10.0.17763.0\TaskMana.85ED985A.Up2Date
+C:\Users\gytis\Documents\TaskManagementApp\obj\Debug\net6.0-windows10.0.17763.0\TaskManagementApp.genruntimeconfig.cache
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\Task Management App.exe
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\Task Management App.dll.config
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\Task Management App.deps.json
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\Task Management App.runtimeconfig.json
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\Task Management App.dll
+C:\Users\gytis\Documents\TaskManagementApp\bin\Debug\net6.0-windows10.0.17763.0\Task Management App.pdb
+C:\Users\gytis\Documents\TaskManagementApp\obj\Debug\net6.0-windows10.0.17763.0\TaskManagementApp.csproj.SuggestedBindingRedirects.cache
+C:\Users\gytis\Documents\TaskManagementApp\obj\Debug\net6.0-windows10.0.17763.0\Task Management App.dll.config
+C:\Users\gytis\Documents\TaskManagementApp\obj\Debug\net6.0-windows10.0.17763.0\Task Management App.dll
+C:\Users\gytis\Documents\TaskManagementApp\obj\Debug\net6.0-windows10.0.17763.0\refint\Task Management App.dll
+C:\Users\gytis\Documents\TaskManagementApp\obj\Debug\net6.0-windows10.0.17763.0\Task Management App.pdb
+C:\Users\gytis\Documents\TaskManagementApp\obj\Debug\net6.0-windows10.0.17763.0\ref\Task Management App.dll

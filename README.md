@@ -1,5 +1,5 @@
 # University projects
-The following is a list of the projects I have completed during the last three years of my studies at the university.
+The following is a list of the various projects that I have completed over the past three years of my studies at the university.
 
 ## Project List:
 1. **Task Management App**
@@ -13,7 +13,7 @@ The following is a list of the projects I have completed during the last three y
 This application is written in C# using the .NET Framework. It utilizes a MySQL server for data management.
 
 ### Quoridor Game
-Developed as a course project, this game was written in C#. The task involved not only creating the game itself but also programming an artificial intelligence (AI) to play the game.
+Developed as a course project, this game was written in C# using the .NET Framework. The task involved not only creating the game itself but also programming an artificial intelligence (AI) to play the game.
 
 ### Calculator
 This project is written in C++. The application can evaluate arithmetic expressions, such as "2 + 3 / 4 - (5 + 8 / 5)".
